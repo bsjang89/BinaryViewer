@@ -1,0 +1,15 @@
+# build output
+bin/
+obj/
+out/
+
+# IDE
+.vs/
+.idea/
+*.user
+*.suo
+
+# sample / work data - do not publish real job files
+*.ovr
+*.jobx
+test*.bin

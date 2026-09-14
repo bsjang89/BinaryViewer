@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>BinaryViewer</AssemblyName>
+    <RootNamespace>BinaryViewer</RootNamespace>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <TieredPGO>true</TieredPGO>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Core and Cli are separate projects; don't glob their sources into this one. -->
+    <Compile Remove="Core/**" />
+    <Compile Remove="Cli/**" />
+    <Compile Remove="Gui/**" />
+    <Compile Remove="bin/**" />
+    <None Remove="Gui/**" />
+    <ProjectReference Include="Core/BinaryViewer.Core.csproj" />
+  </ItemGroup>
+
+</Project>

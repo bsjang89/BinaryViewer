@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Portable analysis engine: no OS specific APIs, runs on Windows, Linux and macOS. -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>BinaryViewer.Core</AssemblyName>
+    <RootNamespace>BinaryViewer.Core</RootNamespace>
+  </PropertyGroup>
+
+</Project>

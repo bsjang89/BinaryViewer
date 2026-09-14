@@ -1,0 +1,282 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <Styles.Resources>
+    <ResourceDictionary>
+
+      <FontFamily x:Key="UiFont">SF Pro Text, Inter, Segoe UI Variable Text, Segoe UI, Ubuntu, sans-serif</FontFamily>
+      <FontFamily x:Key="MonoFont">SF Mono, Menlo, Cascadia Mono, Consolas, DejaVu Sans Mono, monospace</FontFamily>
+
+      <ResourceDictionary.ThemeDictionaries>
+
+        <!-- macOS light: warm whites, hairline separators, system blue -->
+        <ResourceDictionary x:Key="Light">
+          <Color x:Key="AppBgColor">#F1F1F4</Color>
+          <Color x:Key="ChromeBgColor">#FAFAFC</Color>
+          <Color x:Key="SurfaceBgColor">#FFFFFF</Color>
+          <Color x:Key="HairlineColor">#DCDCE0</Color>
+          <Color x:Key="TextPrimaryColor">#1D1D1F</Color>
+          <Color x:Key="TextSecondaryColor">#6E6E73</Color>
+          <Color x:Key="TextTertiaryColor">#A1A1A6</Color>
+          <Color x:Key="AccentColor">#0071E3</Color>
+          <Color x:Key="AccentSoftColor">#E8F1FD</Color>
+          <Color x:Key="ControlBgColor">#FFFFFF</Color>
+          <Color x:Key="ControlHoverColor">#F0F0F3</Color>
+          <Color x:Key="SegmentTrackColor">#EDEDF0</Color>
+
+          <Color x:Key="HexOffsetColor">#9A9AA0</Color>
+          <Color x:Key="HexByteColor">#1D1D1F</Color>
+          <Color x:Key="HexZeroColor">#C7C7CC</Color>
+          <Color x:Key="HexAsciiColor">#2A7D52</Color>
+          <Color x:Key="HexAsciiDimColor">#B0B0B8</Color>
+          <Color x:Key="HexSelectionColor">#CFE3FB</Color>
+          <Color x:Key="HexGroupTintColor">#FAFAFC</Color>
+          <Color x:Key="HexHeaderBgColor">#FBFBFD</Color>
+        </ResourceDictionary>
+
+        <!-- macOS dark: graphite surfaces, lifted accent -->
+        <ResourceDictionary x:Key="Dark">
+          <Color x:Key="AppBgColor">#151517</Color>
+          <Color x:Key="ChromeBgColor">#1E1E21</Color>
+          <Color x:Key="SurfaceBgColor">#202023</Color>
+          <Color x:Key="HairlineColor">#3A3A3D</Color>
+          <Color x:Key="TextPrimaryColor">#F5F5F7</Color>
+          <Color x:Key="TextSecondaryColor">#A1A1A6</Color>
+          <Color x:Key="TextTertiaryColor">#6E6E73</Color>
+          <Color x:Key="AccentColor">#0A84FF</Color>
+          <Color x:Key="AccentSoftColor">#16324E</Color>
+          <Color x:Key="ControlBgColor">#2C2C2E</Color>
+          <Color x:Key="ControlHoverColor">#38383A</Color>
+          <Color x:Key="SegmentTrackColor">#2C2C2E</Color>
+
+          <Color x:Key="HexOffsetColor">#79797F</Color>
+          <Color x:Key="HexByteColor">#ECECF0</Color>
+          <Color x:Key="HexZeroColor">#5A5A60</Color>
+          <Color x:Key="HexAsciiColor">#7FD1A0</Color>
+          <Color x:Key="HexAsciiDimColor">#6B6B72</Color>
+          <Color x:Key="HexSelectionColor">#2C4B70</Color>
+          <Color x:Key="HexGroupTintColor">#26262A</Color>
+          <Color x:Key="HexHeaderBgColor">#26262A</Color>
+        </ResourceDictionary>
+
+      </ResourceDictionary.ThemeDictionaries>
+
+      <SolidColorBrush x:Key="AppBg" Color="{DynamicResource AppBgColor}" />
+      <SolidColorBrush x:Key="ChromeBg" Color="{DynamicResource ChromeBgColor}" />
+      <SolidColorBrush x:Key="SurfaceBg" Color="{DynamicResource SurfaceBgColor}" />
+      <SolidColorBrush x:Key="Hairline" Color="{DynamicResource HairlineColor}" />
+      <SolidColorBrush x:Key="TextPrimary" Color="{DynamicResource TextPrimaryColor}" />
+      <SolidColorBrush x:Key="TextSecondary" Color="{DynamicResource TextSecondaryColor}" />
+      <SolidColorBrush x:Key="TextTertiary" Color="{DynamicResource TextTertiaryColor}" />
+      <SolidColorBrush x:Key="Accent" Color="{DynamicResource AccentColor}" />
+      <SolidColorBrush x:Key="AccentSoft" Color="{DynamicResource AccentSoftColor}" />
+      <SolidColorBrush x:Key="ControlBg" Color="{DynamicResource ControlBgColor}" />
+      <SolidColorBrush x:Key="ControlHover" Color="{DynamicResource ControlHoverColor}" />
+      <SolidColorBrush x:Key="SegmentTrack" Color="{DynamicResource SegmentTrackColor}" />
+    </ResourceDictionary>
+  </Styles.Resources>
+
+  <!-- window -->
+  <Style Selector="Window">
+    <Setter Property="Background" Value="{DynamicResource AppBg}" />
+    <Setter Property="FontFamily" Value="{DynamicResource UiFont}" />
+    <Setter Property="FontSize" Value="13" />
+    <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
+  </Style>
+
+  <Style Selector="TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
+  </Style>
+  <Style Selector="TextBlock.secondary">
+    <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+    <Setter Property="FontSize" Value="12" />
+  </Style>
+  <Style Selector="TextBlock.sectionLabel">
+    <Setter Property="Foreground" Value="{DynamicResource TextTertiary}" />
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+
+  <!-- buttons: flat pills with a hairline, accent on hover -->
+  <Style Selector="Button">
+    <Setter Property="Background" Value="{DynamicResource ControlBg}" />
+    <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Hairline}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="7" />
+    <Setter Property="Padding" Value="12,5" />
+    <Setter Property="FontSize" Value="12.5" />
+  </Style>
+  <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource ControlHover}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Hairline}" />
+    <Setter Property="TextElement.Foreground" Value="{DynamicResource TextPrimary}" />
+  </Style>
+  <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource AccentSoft}" />
+    <Setter Property="TextElement.Foreground" Value="{DynamicResource Accent}" />
+  </Style>
+  <Style Selector="Button.accent">
+    <Setter Property="Background" Value="{DynamicResource Accent}" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+  <Style Selector="Button.accent /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="TextElement.Foreground" Value="White" />
+  </Style>
+  <Style Selector="Button.ghost">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+    <Setter Property="Padding" Value="8,4" />
+  </Style>
+
+  <!-- segmented control look for the analysis tabs -->
+  <Style Selector="TabControl">
+    <Setter Property="Padding" Value="0" />
+  </Style>
+  <Style Selector="TabControl /template/ ItemsPresenter#PART_ItemsPresenter">
+    <Setter Property="Margin" Value="10,8,10,6" />
+  </Style>
+  <Style Selector="TabItem">
+    <Setter Property="FontSize" Value="12.5" />
+    <Setter Property="FontWeight" Value="Medium" />
+    <Setter Property="MinHeight" Value="28" />
+    <Setter Property="Padding" Value="14,4" />
+    <Setter Property="Margin" Value="0,0,6,0" />
+    <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+  </Style>
+  <Style Selector="TabItem /template/ Border#PART_LayoutRoot">
+    <Setter Property="CornerRadius" Value="7" />
+  </Style>
+  <Style Selector="TabItem:not(:selected) /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{DynamicResource SegmentTrack}" />
+  </Style>
+  <Style Selector="TabItem:selected /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{DynamicResource Accent}" />
+  </Style>
+  <Style Selector="TabItem:selected">
+    <Setter Property="Foreground" Value="White" />
+  </Style>
+  <Style Selector="TabItem:pointerover /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{DynamicResource ControlHover}" />
+  </Style>
+  <Style Selector="TabItem:selected:pointerover /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{DynamicResource Accent}" />
+  </Style>
+  <Style Selector="TabItem /template/ Border#PART_SelectedPipe">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>
+
+  <!-- inputs -->
+  <Style Selector="TextBox">
+    <Setter Property="Background" Value="{DynamicResource ControlBg}" />
+    <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Hairline}" />
+    <Setter Property="CornerRadius" Value="7" />
+    <Setter Property="Padding" Value="8,5" />
+    <Setter Property="SelectionBrush" Value="{DynamicResource AccentSoft}" />
+  </Style>
+  <Style Selector="TextBox.plain">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="CornerRadius" Value="0" />
+    <Setter Property="Padding" Value="12,8" />
+  </Style>
+  <Style Selector="ComboBox">
+    <Setter Property="Background" Value="{DynamicResource ControlBg}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Hairline}" />
+    <Setter Property="CornerRadius" Value="7" />
+    <Setter Property="FontSize" Value="12.5" />
+    <Setter Property="Padding" Value="10,4" />
+  </Style>
+  <Style Selector=":is(Border).stepper">
+    <Setter Property="Background" Value="{DynamicResource ControlBg}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Hairline}" />
+  </Style>
+  <Style Selector="Button.stepper">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+  </Style>
+  <Style Selector="Button.stepper /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="CornerRadius" Value="{Binding $parent[Button].CornerRadius}" />
+  </Style>
+  <Style Selector="Button.stepper:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource ControlHover}" />
+    <Setter Property="TextElement.Foreground" Value="{DynamicResource TextPrimary}" />
+  </Style>
+  <Style Selector="Button.stepper:pressed /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource AccentSoft}" />
+    <Setter Property="TextElement.Foreground" Value="{DynamicResource Accent}" />
+  </Style>
+  <Style Selector="Button.stepper:disabled /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="TextElement.Foreground" Value="{DynamicResource TextTertiary}" />
+  </Style>
+  <Style Selector="CheckBox">
+    <Setter Property="FontSize" Value="12.5" />
+    <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+  </Style>
+
+  <!-- scroll bars: thin, no arrows, rounded thumb -->
+  <Style Selector="ScrollBar">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="AllowAutoHide" Value="True" />
+  </Style>
+  <Style Selector="ScrollBar:vertical">
+    <Setter Property="Width" Value="12" />
+  </Style>
+  <Style Selector="ScrollBar /template/ Thumb">
+    <Setter Property="Background" Value="{DynamicResource TextTertiary}" />
+    <Setter Property="CornerRadius" Value="4" />
+    <Setter Property="Opacity" Value="0.5" />
+  </Style>
+  <Style Selector="ScrollBar /template/ Thumb:pointerover">
+    <Setter Property="Opacity" Value="0.85" />
+  </Style>
+  <Style Selector="ScrollBar /template/ RepeatButton">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>
+
+  <!-- data grids: hairline rows, no vertical rules -->
+  <Style Selector="DataGrid">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="GridLinesVisibility" Value="None" />
+    <Setter Property="RowHeight" Value="26" />
+    <Setter Property="FontSize" Value="11.5" />
+    <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource Hairline}" />
+  </Style>
+  <Style Selector="DataGridColumnHeader">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource TextTertiary}" />
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Padding" Value="10,4" />
+    <Setter Property="SeparatorBrush" Value="Transparent" />
+  </Style>
+  <Style Selector="DataGridRow">
+    <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
+  </Style>
+  <Style Selector="DataGridRow:selected /template/ Rectangle#BackgroundRectangle">
+    <Setter Property="Fill" Value="{DynamicResource Accent}" />
+    <Setter Property="Opacity" Value="1" />
+  </Style>
+  <Style Selector="DataGridCell">
+    <Setter Property="Padding" Value="10,0" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+
+  <!-- splitters become hairlines -->
+  <Style Selector="GridSplitter">
+    <Setter Property="Background" Value="{DynamicResource Hairline}" />
+  </Style>
+
+  <!-- progress -->
+  <Style Selector="ProgressBar">
+    <Setter Property="Foreground" Value="{DynamicResource Accent}" />
+    <Setter Property="CornerRadius" Value="3" />
+  </Style>
+
+</Styles>

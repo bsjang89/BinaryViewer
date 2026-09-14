@@ -1,0 +1,176 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="using:BinaryViewer.Gui"
+        x:Class="BinaryViewer.Gui.MainWindow"
+        Title="Binary Viewer"
+        Width="1460" Height="900"
+        MinWidth="900" MinHeight="560"
+        Background="{DynamicResource AppBg}">
+
+  <DockPanel>
+
+    <!-- unified toolbar -->
+    <Border Name="Toolbar" DockPanel.Dock="Top" Background="{DynamicResource ChromeBg}"
+            BorderBrush="{DynamicResource Hairline}" BorderThickness="0,0,0,1">
+      <Grid ColumnDefinitions="Auto,*,Auto" Margin="14,9">
+
+        <StackPanel Name="ToolbarLeft" Grid.Column="0" Orientation="Horizontal" Spacing="7">
+          <Button Name="OpenButton" Classes="accent" />
+          <Border Width="1" Background="{DynamicResource Hairline}" Margin="4,3" />
+          <Button Name="GotoButton" />
+          <Button Name="FindButton" />
+          <Button Name="ScanButton" />
+          <Button Name="StringsButton" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+          <ProgressBar Name="Progress" Width="160" Height="4" Minimum="0" Maximum="100" IsVisible="False" />
+          <Button Name="CancelButton" Classes="ghost" IsVisible="False" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+          <TextBlock Name="PerRowLabel" Classes="secondary" VerticalAlignment="Center" />
+          <ComboBox Name="BprCombo" Width="90" />
+          <CheckBox Name="AutoScanCheck" IsChecked="True" />
+          <Button Name="LanguageButton" Classes="ghost" Padding="8,4" FontSize="11.5" FontWeight="SemiBold" />
+          <Button Name="ThemeButton" Classes="ghost" Padding="7,4">
+            <StackPanel Orientation="Horizontal" Spacing="5">
+              <Path Name="ThemeIcon" Width="16" Height="16" Stretch="None"
+                    Fill="{DynamicResource TextSecondary}" />
+              <TextBlock Name="ThemeLabel" Classes="secondary" VerticalAlignment="Center" />
+            </StackPanel>
+          </Button>
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <!-- status bar -->
+    <Border DockPanel.Dock="Bottom" Background="{DynamicResource ChromeBg}"
+            BorderBrush="{DynamicResource Hairline}" BorderThickness="0,1,0,0">
+      <Grid ColumnDefinitions="*,Auto,Auto" Margin="16,6">
+        <TextBlock Name="StatusFile" Grid.Column="0" Classes="secondary"
+                   TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+        <TextBlock Name="StatusOffset" Grid.Column="1" Classes="secondary" Margin="18,0"
+                   Text="-" VerticalAlignment="Center" />
+        <Border Grid.Column="2" Background="{DynamicResource AccentSoft}" CornerRadius="6" Padding="9,2">
+          <TextBlock Name="StatusInfo" Text="" FontSize="11.5" FontWeight="Medium"
+                     Foreground="{DynamicResource Accent}" />
+        </Border>
+      </Grid>
+    </Border>
+
+    <!-- hex pane | analysis pane -->
+    <Grid ColumnDefinitions="*,1,540" Margin="14,12,14,10">
+
+      <Border Grid.Column="0" Background="{DynamicResource SurfaceBg}" CornerRadius="10"
+              BorderBrush="{DynamicResource Hairline}" BorderThickness="1" ClipToBounds="True">
+        <ContentControl Name="HexHost" />
+      </Border>
+
+      <GridSplitter Grid.Column="1" Background="Transparent" Width="8" Margin="-4,0"
+                    ResizeDirection="Columns" ZIndex="2" />
+
+      <Grid Grid.Column="2" RowDefinitions="*,1,246" Margin="12,0,0,0">
+
+        <Border Grid.Row="0" Background="{DynamicResource SurfaceBg}" CornerRadius="10"
+                BorderBrush="{DynamicResource Hairline}" BorderThickness="1" ClipToBounds="True">
+          <TabControl Name="Tabs">
+
+            <TabItem Name="TabAnalysis">
+              <DockPanel>
+                <Border DockPanel.Dock="Top" Padding="10,0,10,8">
+                  <Button Name="ReanalyzeButton" Classes="ghost" HorizontalAlignment="Right" />
+                </Border>
+                <Border BorderBrush="{DynamicResource Hairline}" BorderThickness="0,1,0,0">
+                  <TextBox Name="ReportBox" Classes="plain" IsReadOnly="True" AcceptsReturn="True"
+                           TextWrapping="NoWrap" FontFamily="{DynamicResource MonoFont}" FontSize="11.5" />
+                </Border>
+              </DockPanel>
+            </TabItem>
+
+            <TabItem Name="TabJson">
+              <DockPanel>
+                <Border DockPanel.Dock="Top" Padding="10,0,10,8">
+                  <StackPanel Orientation="Horizontal" Spacing="7">
+                    <Button Name="JsonScanButton" />
+                    <TextBlock Name="JsonMinLabel" Classes="secondary" VerticalAlignment="Center" Margin="4,0,0,0" />
+                    <v:Stepper Name="JsonMinLen" Classes="stepper" Value="24" Minimum="8"
+                               Maximum="100000" Step="8" Width="118" />
+                    <CheckBox Name="JsonUtf16Check" Content="UTF-16LE" IsChecked="True" />
+                    <Button Name="JsonSaveButton" Classes="ghost" />
+                    <Button Name="JsonCopyButton" Classes="ghost" />
+                  </StackPanel>
+                </Border>
+                <Grid RowDefinitions="*,1,*">
+                  <Border Grid.Row="0" BorderBrush="{DynamicResource Hairline}" BorderThickness="0,1,0,0">
+                    <DataGrid Name="JsonGrid" IsReadOnly="True" AutoGenerateColumns="False"
+                              FontFamily="{DynamicResource MonoFont}">
+                      <DataGrid.Columns>
+                        <DataGridTextColumn Header="오프셋" Binding="{Binding Offset}" Width="Auto" />
+                        <DataGridTextColumn Header="길이" Binding="{Binding Size}" Width="Auto" />
+                        <DataGridTextColumn Header="종류" Binding="{Binding Kind}" Width="Auto" />
+                        <DataGridTextColumn Header="인코딩" Binding="{Binding Encoding}" Width="Auto" />
+                        <DataGridTextColumn Header="미리보기" Binding="{Binding Preview}" Width="*" MinWidth="160" />
+                      </DataGrid.Columns>
+                    </DataGrid>
+                  </Border>
+                  <GridSplitter Grid.Row="1" Background="{DynamicResource Hairline}" />
+                  <TextBox Name="JsonText" Grid.Row="2" Classes="plain" IsReadOnly="True" AcceptsReturn="True"
+                           TextWrapping="NoWrap" FontFamily="{DynamicResource MonoFont}" FontSize="11.5" />
+                </Grid>
+              </DockPanel>
+            </TabItem>
+
+            <TabItem Name="TabStrings">
+              <DockPanel>
+                <Border DockPanel.Dock="Top" Padding="10,0,10,8">
+                  <StackPanel Orientation="Horizontal" Spacing="7">
+                    <Button Name="StringScanButton" />
+                    <TextBlock Name="StringMinLabel" Classes="secondary" VerticalAlignment="Center" Margin="4,0,0,0" />
+                    <v:Stepper Name="StringMinLen" Classes="stepper" Value="6" Minimum="3"
+                               Maximum="500" Step="1" Width="110" />
+                    <TextBox Name="StringFilter" Width="150" />
+                  </StackPanel>
+                </Border>
+                <Border BorderBrush="{DynamicResource Hairline}" BorderThickness="0,1,0,0">
+                  <DataGrid Name="StringGrid" IsReadOnly="True" AutoGenerateColumns="False"
+                            FontFamily="{DynamicResource MonoFont}">
+                    <DataGrid.Columns>
+                      <DataGridTextColumn Header="오프셋" Binding="{Binding Offset}" Width="Auto" />
+                      <DataGridTextColumn Header="인코딩" Binding="{Binding Encoding}" Width="Auto" />
+                      <DataGridTextColumn Header="길이" Binding="{Binding Size}" Width="Auto" />
+                      <DataGridTextColumn Header="내용" Binding="{Binding Text}" Width="*" MinWidth="160" />
+                    </DataGrid.Columns>
+                  </DataGrid>
+                </Border>
+              </DockPanel>
+            </TabItem>
+
+          </TabControl>
+        </Border>
+
+        <GridSplitter Grid.Row="1" Background="Transparent" Height="8" Margin="0,-4"
+                      ResizeDirection="Rows" ZIndex="2" />
+
+        <Border Grid.Row="2" Background="{DynamicResource SurfaceBg}" CornerRadius="10" Margin="0,12,0,0"
+                BorderBrush="{DynamicResource Hairline}" BorderThickness="1" ClipToBounds="True">
+          <DockPanel>
+            <TextBlock Name="InspectorLabel" DockPanel.Dock="Top" Classes="sectionLabel" Margin="12,10,0,6" />
+            <Border BorderBrush="{DynamicResource Hairline}" BorderThickness="0,1,0,0">
+              <DataGrid Name="InspectorGrid" IsReadOnly="True" AutoGenerateColumns="False"
+                        FontFamily="{DynamicResource MonoFont}" RowHeight="24">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="형식" Binding="{Binding Name}" Width="86" />
+                  <DataGridTextColumn Header="리틀 엔디언" Binding="{Binding Le}" Width="*" />
+                  <DataGridTextColumn Header="빅 엔디언" Binding="{Binding Be}" Width="*" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Border>
+          </DockPanel>
+        </Border>
+      </Grid>
+    </Grid>
+
+  </DockPanel>
+</Window>

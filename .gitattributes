@@ -1,0 +1,8 @@
+* text=auto
+
+# shell scripts must keep LF or they break on macOS / Linux
+*.sh text eol=lf
+
+# Windows tooling prefers CRLF for these
+*.sln text eol=crlf
+*.csproj text eol=crlf
