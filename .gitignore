@@ -13,3 +13,6 @@ out/
 *.ovr
 *.jobx
 test*.bin
+
+# generated sample
+demo.ovx
